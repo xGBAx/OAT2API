@@ -56,18 +56,18 @@ app.get("/produtos", (req, res) => {
 });
 
 app.post("/produtos", (req, res) => {
-  const { nome, preco, marca } = req.body;
-  if (!nome || !preco || !marca) {
+  const { nomeitm, precoitm, marcaitm, loja, tamanho } = req.body;
+  if (!nomeitm || !precoitm || !marcaitm || !loja || !tamanho) {
     return res.status(400).json({ message: "Dados incompletos" });
   }
-  const novoProduto = create({ nome, preco, marca });
+  const novoProduto = create({ nome, preco, marca, loja, tamanho });
   res.status(201).json(novoProduto);
 });
 
 app.put("/produtos/:id", (req, res) => {
   const { id } = req.params;
-  const { nome, preco, marca } = req.body;
-  const atualizado = update(parseInt(id), { nome, preco, marca });
+  const { nomeitm, precoitm, marcaitm, loja, tamanho } = req.body;
+  const atualizado = update(parseInt(id), { nomeitm, precoitm, marcaitm, loja, tamanho });
   if (atualizado) {
     res.json(atualizado);
   } else {
